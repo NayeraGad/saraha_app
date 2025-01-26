@@ -13,9 +13,8 @@ eventEmitter.on("sendEmail", async (data) => {
     options: { expiresIn: "10m" },
   });
 
-  const link = `${req.protocol}://${req.get(
-    "host"
-  )}/users/confirmEmail/${token}`;
+  // const link = `${req.protocol}://${req.get('host')}/users/confirmEmail/${token}`;
+  const link = `http://localhost:${process.env.PORT}/users/confirmEmail/${token}`;
 
   const emailSent = await sendEmail(
     email,
@@ -28,7 +27,7 @@ eventEmitter.on("sendEmail", async (data) => {
 });
 
 eventEmitter.on("unfreezeAccount", async (data) => {
-  const { email, req } = data;
+  const { email } = data;
 
   const token = await generateToken({
     payload: { email },
@@ -36,9 +35,7 @@ eventEmitter.on("unfreezeAccount", async (data) => {
     options: { expiresIn: "10m" },
   });
 
-  const link = `${req.protocol}://${req.get(
-    "host"
-  )}/users/unfreezeAccount/${token}`;
+  const link = `http://localhost:${process.env.PORT}/users/unfreezeAccount/${token}`;
 
   const emailSent = await sendEmail(
     email,
