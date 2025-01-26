@@ -33,7 +33,7 @@ export const signup = asyncHandler(async (req, res, next) => {
   });
 
   // Send confirmation email
-  eventEmitter.emit("sendEmail", { email });
+  eventEmitter.emit("sendEmail", { email, req });
 
   // Create user
   const user = await usersModel.create({

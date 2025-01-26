@@ -28,7 +28,7 @@ eventEmitter.on("sendEmail", async (data) => {
 });
 
 eventEmitter.on("unfreezeAccount", async (data) => {
-  const { email } = data;
+  const { email, req } = data;
 
   const token = await generateToken({
     payload: { email },
