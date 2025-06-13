@@ -28,10 +28,10 @@ eventEmitter.on("sendEmail", async (data) => {
 });
 
 eventEmitter.on("unfreezeAccount", async (data) => {
-  const { email } = data;
+  const { email, req } = data;
 
   const token = await generateToken({
-    payload: { email, req },
+    payload: { email},
     SIGNATURE: process.env.SIGNATURE_UNFREEZE,
     options: { expiresIn: "10m" },
   });
