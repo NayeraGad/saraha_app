@@ -31,12 +31,11 @@ eventEmitter.on("unfreezeAccount", async (data) => {
   const { email } = data;
 
   const token = await generateToken({
-    payload: { email },
+    payload: { email, req },
     SIGNATURE: process.env.SIGNATURE_UNFREEZE,
     options: { expiresIn: "10m" },
   });
 
-  // const link = `http://localhost:${process.env.PORT}/users/unfreezeAccount/${token}`;
   const link = `${req.protocol}://${req.get(
     "host"
   )}/users/confirmEmail/${token}`;
